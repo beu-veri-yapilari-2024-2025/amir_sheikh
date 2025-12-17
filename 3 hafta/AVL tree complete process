@@ -1,0 +1,94 @@
+AVL – DSW – Self-Adjusting Tree Application
+Step 1 – AVL Tree Formation
+The given character sequence is:
+S, E, L, İ, M, K, A, Ç, T, I
+
+These characters are inserted one by one into an AVL tree using alphabetical comparison rules. After each insertion, balance factors are checked and AVL rotations are applied if necessary.
+
+Final properties of the AVL tree:
+- Root node: L
+- Leaf nodes: A, I, K, M, T
+
+AVL rotations used:
+- LL Rotation: Applied when insertion occurs in the left subtree of the left child.
+- RR Rotation: Applied when insertion occurs in the right subtree of the right child.
+- LR Rotation: Left child is right-heavy; left rotation followed by right rotation.
+- RL Rotation: Right child is left-heavy; right rotation followed by left rotation.
+
+Final AVL Tree (ASCII Diagram):
+
+        L
+      /   \
+     E     S
+    / \   / \
+   A   K M   T
+        \
+         I
+
+Step 2 – DSW (Day–Stout–Warren) Method
+Goal of DSW:
+"To reduce tree height to the minimum possible level."
+
+Developers:
+- Colin Day
+- Quentin F. Stout
+- Bette L. Warren
+
+Two main steps:
+1. Creating the backbone (vine) using right rotations.
+2. Balancing the backbone using left rotations.
+
+Backbone (Vine) Representation:
+
+A -> E -> I -> K -> L -> M -> S -> T
+
+Balanced Tree After DSW (ASCII Diagram):
+
+        L
+      /   \
+     I     S
+    / \   / \
+   A   K M   T
+
+Step 3 – Self-Adjusting Tree (Frequency Based)
+In a self-adjusting tree, each node stores an access frequency.
+When a node is accessed:
+- Frequency is increased by 1.
+- Priority rotations move the node closer to the root.
+
+This ensures that frequently accessed elements remain near the root.
+
+Example After Repeated Access to M:
+
+        M
+      /   \
+     L     S
+    / \     \
+   I   K     T
+  /
+ A
+
+Step 4 – C# Console Application Summary
+The C# program includes:
+
+AVL Functions:
+- Insert()
+- RotateLeft(), RotateRight()
+- GetHeight(), GetBalance()
+- Tree traversal methods
+
+DSW Functions:
+- CreateBackbone()
+- BalanceBackbone()
+- ApplyDSW()
+
+Self-Adjusting Tree Functions:
+- SearchWithFrequency()
+- PriorityRotate()
+- AdjustTowardsRoot()
+
+When the program runs, it prints:
+1. Final AVL Tree
+2. Tree after DSW balancing
+3. Tree after self-adjusting access
+
